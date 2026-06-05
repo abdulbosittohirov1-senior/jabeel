@@ -131,14 +131,44 @@ export default function Contact() {
   const [selectedZoneId, setSelectedZoneId] = useState('zone-1');
   const activeZone = zones.find((z) => z.id === selectedZoneId) || zones[0];
 
-  const handleContactSubmit = (e: FormEvent) => {
+  const handleContactSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !phone.trim() || !message.trim()) return;
 
-    const randomCode = Math.floor(1000 + Math.random() * 9000);
-    setPriorityTicket(`JB-26-${randomCode}`);
-    setFormSubmitted(true);
-    setCatalogDownloaded(false);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          phone,
+          message,
+          language,
+        }),
+      });
+
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Contact request failed');
+      }
+
+      setPriorityTicket(result.ticketId || `JB-26-${Math.floor(1000 + Math.random() * 9000)}`);
+      setFormSubmitted(true);
+      setCatalogDownloaded(false);
+    } catch (error) {
+      console.error(error);
+      alert(
+        language === 'en'
+          ? 'Could not send your request. Please call us or try again later.'
+          : language === 'ru'
+          ? 'Не удалось отправить заявку. Позвоните нам или попробуйте позже.'
+          : 'Murojaat yuborilmadi. Iltimos, telefon orqali bog\'laning yoki keyinroq urinib ko\'ring.'
+      );
+    }
   };
 
   const handleResetForm = () => {
