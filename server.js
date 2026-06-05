@@ -2,7 +2,7 @@ import 'dotenv/config';
 import express from 'express';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { sendContactToTelegram } from './lib/telegramContact.js';
+import { getTelegramContactStatus, sendContactToTelegram } from './lib/telegramContact.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -15,6 +15,15 @@ app.use(express.json({ limit: '64kb' }));
 app.use((_req, res, next) => {
   res.setHeader('Cache-Control', 'no-store');
   next();
+});
+
+app.get('/api/contact', (_req, res) => {
+  const status = getTelegramContactStatus();
+
+  return res.json({
+    ok: status.botTokenConfigured && status.managerChatIdConfigured,
+    ...status,
+  });
 });
 
 app.post('/api/contact', async (req, res) => {

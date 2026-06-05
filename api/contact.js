@@ -1,4 +1,4 @@
-import { sendContactToTelegram } from '../lib/telegramContact.js';
+import { getTelegramContactStatus, sendContactToTelegram } from '../lib/telegramContact.js';
 
 async function readJsonBody(req) {
   if (req.body && typeof req.body === 'object') {
@@ -20,8 +20,17 @@ async function readJsonBody(req) {
 }
 
 export default async function handler(req, res) {
+  if (req.method === 'GET') {
+    const status = getTelegramContactStatus();
+
+    return res.status(200).json({
+      ok: status.botTokenConfigured && status.managerChatIdConfigured,
+      ...status,
+    });
+  }
+
   if (req.method !== 'POST') {
-    res.setHeader('Allow', 'POST');
+    res.setHeader('Allow', 'GET, POST');
     return res.status(405).json({ error: 'Method not allowed.' });
   }
 
