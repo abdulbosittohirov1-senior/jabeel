@@ -153,7 +153,7 @@ export default function Contact() {
       const result = await response.json().catch(() => ({}));
 
       if (!response.ok) {
-        throw new Error(result.error || 'Contact request failed');
+        throw new Error(result.error || `Contact request failed (${response.status})`);
       }
 
       setPriorityTicket(result.ticketId || `JB-26-${Math.floor(1000 + Math.random() * 9000)}`);
@@ -161,12 +161,13 @@ export default function Contact() {
       setCatalogDownloaded(false);
     } catch (error) {
       console.error(error);
+      const reason = error instanceof Error ? error.message : 'Unknown error';
       alert(
         language === 'en'
-          ? 'Could not send your request. Please call us or try again later.'
+          ? `Could not send your request. Reason: ${reason}`
           : language === 'ru'
           ? 'Не удалось отправить заявку. Позвоните нам или попробуйте позже.'
-          : 'Murojaat yuborilmadi. Iltimos, telefon orqali bog\'laning yoki keyinroq urinib ko\'ring.'
+          : `Murojaat yuborilmadi. Sabab: ${reason}`
       );
     }
   };

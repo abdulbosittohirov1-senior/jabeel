@@ -25,6 +25,7 @@ export default async function handler(req, res) {
 
     return res.status(200).json({
       ok: status.botTokenConfigured && status.managerChatIdConfigured,
+      version: '2026-06-05-force-vercel-contact',
       ...status,
     });
   }

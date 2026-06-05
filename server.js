@@ -22,6 +22,7 @@ app.get('/api/contact', (_req, res) => {
 
   return res.json({
     ok: status.botTokenConfigured && status.managerChatIdConfigured,
+    version: '2026-06-05-force-vercel-contact',
     ...status,
   });
 });
