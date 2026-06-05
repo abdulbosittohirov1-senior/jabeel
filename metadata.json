@@ -1,0 +1,6 @@
+{
+  "name": "JABEEL Premium",
+  "description": "Premium Quality Chicken Meat Production and Delivery Landing Page",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
