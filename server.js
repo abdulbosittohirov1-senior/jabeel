@@ -14,7 +14,14 @@ app.use(express.json({ limit: '64kb' }));
 
 app.use((_req, res, next) => {
   res.setHeader('Cache-Control', 'no-store');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   next();
+});
+
+app.options('*', (_req, res) => {
+  return res.sendStatus(204);
 });
 
 app.get('/api/contact', (_req, res) => {
