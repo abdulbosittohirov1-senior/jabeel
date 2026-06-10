@@ -135,12 +135,12 @@ export default function Navbar() {
               </div>
 
               <a
-                href="tel:+998977040101"
+                href="tel:+998958132212"
                 className="flex items-center gap-1 bg-orange-50 hover:bg-orange-100 text-orange-600 px-2.5 py-1.5 rounded-lg transition-colors font-bold text-xs"
                 id="mobile-phone-shortcut"
               >
                 <Phone className="w-3.5 h-3.5 text-orange-500" />
-                <span className="sm:inline hidden">+998 97 704 01 01</span>
+                <span className="sm:inline hidden">+998 95 813 22 12</span>
                 <span className="sm:hidden inline">{t("call")}</span>
               </a>
             </div>
@@ -202,12 +202,12 @@ export default function Navbar() {
             </div>
 
             <a
-              href="tel:+998977040101"
+              href="tel:+998958132212"
               className="flex items-center gap-2 text-slate-700 hover:text-orange-500 transition-colors font-semibold text-sm"
               id="nav-phone-btn"
             >
               <Phone className="w-4 h-4 text-orange-500" />
-              <span>+998 97 704 01 01</span>
+              <span>+998 95 813 22 12</span>
             </a>
             
             <button

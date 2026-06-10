@@ -119,10 +119,10 @@ export default function Contact() {
                       {language === 'en' ? 'Confidence Hotline' : language === 'ru' ? 'Телефон отдела продаж' : 'Ishonch Telefoni'}
                     </h4>
                     <a
-                      href="tel:+998977040101"
+                      href="tel:+998958132212"
                       className="text-sm text-slate-800 font-bold hover:text-orange-500 transition-colors block mt-1"
                     >
-                      (+998) 97-704-01-01
+                      (+998) 95-813-22-12
                     </a>
                   </div>
                 </div>
@@ -162,7 +162,7 @@ export default function Contact() {
                   <span>{language === 'en' ? 'Message Telegram' : language === 'ru' ? 'Написать в Telegram' : 'Telegram orqali yozish'}</span>
                 </a>
                 <a
-                  href="https://api.whatsapp.com/send?phone=998977040101&text=Assalomu%20alaykum%20Jabeel%20Premium"
+                  href="https://api.whatsapp.com/send?phone=998958132212&text=Assalomu%20alaykum%20Jabeel%20Premium"
                   target="_blank"
                   rel="noreferrer"
                   className="flex-1 bg-[#25D366]/10 hover:bg-[#25D366]/20 text-emerald-600 text-xs font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 group transition-all"

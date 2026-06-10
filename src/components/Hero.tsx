@@ -99,7 +99,7 @@ export default function Hero() {
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
               <a
-                href="tel:+998977040101"
+                href="tel:+998958132212"
                 className="w-full sm:w-auto bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 font-bold px-8 py-4 rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all text-base flex items-center justify-center cursor-pointer"
                 id="hero-cta-call"
               >
