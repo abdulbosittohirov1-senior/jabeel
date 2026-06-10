@@ -13,6 +13,7 @@ export default function Contact() {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [priorityTicket, setPriorityTicket] = useState('');
   const [catalogDownloaded, setCatalogDownloaded] = useState(false);
+  const [showLocationMap, setShowLocationMap] = useState(false);
 
   const handleContactSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -374,30 +375,67 @@ export default function Contact() {
               </a>
             </div>
             
-            <div className="rounded-2xl border border-orange-100 bg-orange-50/50 p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center shrink-0 shadow-sm">
-                  <MapPin className="w-5 h-5 text-orange-500" />
+            <div className="rounded-2xl border border-orange-100 bg-orange-50/50 overflow-hidden">
+              <div className="p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center shrink-0 shadow-sm">
+                    <MapPin className="w-5 h-5 text-orange-500" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-slate-900">Toshkent vil., Qibray t., Cho'ponota 23</p>
+                    <p className="text-xs text-slate-500 mt-1">
+                      {language === 'en'
+                        ? 'Press the button to show the location without slowing the page load.'
+                        : language === 'ru'
+                        ? 'Nazhmite knopku, chtoby pokazat lokatsiyu bez zamedleniya sayta.'
+                        : 'Lokatsiyani ko\'rish uchun tugmani bosing, sayt yuklanishi sekinlashmaydi.'}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-sm font-bold text-slate-900">Toshkent vil., Qibray t., Cho'ponota 23</p>
-                  <p className="text-xs text-slate-500 mt-1">
-                    {language === 'en'
-                      ? 'The map opens in a separate tab so the page stays fast on all devices.'
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <button
+                    type="button"
+                    onClick={() => setShowLocationMap((value) => !value)}
+                    className="inline-flex items-center justify-center bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs px-5 py-3 rounded-xl transition-all"
+                  >
+                    {showLocationMap
+                      ? language === 'en'
+                        ? 'Hide Location'
+                        : language === 'ru'
+                        ? 'Skryt lokatsiyu'
+                        : 'Lokatsiyani yopish'
+                      : language === 'en'
+                      ? 'Show Location'
                       : language === 'ru'
-                      ? 'Karta otkroetsya v novoy vkladke, sayt ne budet zavisat.'
-                      : 'Xarita alohida oynada ochiladi, shuning uchun sayt qotmaydi.'}
-                  </p>
+                      ? 'Pokazat lokatsiyu'
+                      : 'Mestopolojeniyani korsatish'}
+                  </button>
+                  <a
+                    href="https://yandex.com/maps/?ll=69.341202%2C41.435083&z=15&mode=search&text=41.435083%2C69.341202"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center bg-white hover:bg-orange-100 text-orange-600 border border-orange-200 font-bold text-xs px-5 py-3 rounded-xl transition-all"
+                  >
+                    {language === 'en' ? 'Open Map' : language === 'ru' ? 'Otkryt kartu' : 'Xaritani ochish'}
+                  </a>
                 </div>
               </div>
-              <a
-                href="https://yandex.com/maps/?ll=69.341202%2C41.435083&z=15&mode=search&text=41.435083%2C69.341202"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs px-5 py-3 rounded-xl transition-all"
-              >
-                {language === 'en' ? 'Open Map' : language === 'ru' ? 'Otkryt kartu' : 'Xaritani ochish'}
-              </a>
+
+              {showLocationMap && (
+                <div className="relative w-full h-[320px] sm:h-[420px] border-t border-orange-100 bg-slate-100">
+                  <iframe
+                    title="Jabeel Premium location"
+                    src="https://yandex.com/map-widget/v1/?ll=69.341202%2C41.435083&z=15&pt=69.341202%2C41.435083%2Cpm2orl"
+                    width="100%"
+                    height="100%"
+                    frameBorder="0"
+                    allowFullScreen={true}
+                    loading="lazy"
+                    referrerPolicy="no-referrer"
+                    className="absolute inset-0 w-full h-full"
+                  />
+                </div>
+              )}
             </div>
           </div>
         </div>
