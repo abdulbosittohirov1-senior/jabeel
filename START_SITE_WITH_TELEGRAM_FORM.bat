@@ -30,7 +30,7 @@ echo Starting JABEEL website with Telegram contact form...
 echo Keep the new black terminal window open. If you close it, localhost:8080 will stop.
 echo.
 
-start "JABEEL Website Server" cmd /k "cd /d ""%~dp0"" && npm install && npm start"
+start "JABEEL Website Server" cmd /k "cd /d ""%~dp0"" && npm install && npm run form"
 
 timeout /t 5 /nobreak >nul
 start http://localhost:8080

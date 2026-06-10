@@ -136,31 +136,15 @@ export default function Contact() {
     if (!name.trim() || !phone.trim() || !message.trim()) return;
 
     try {
-      const payload = { name, email, phone, message, language };
-      const submitContact = async (url: string) => {
-        const response = await fetch(url, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        });
-        const result = await response.json().catch(() => ({}));
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, phone, message, language }),
+      });
+      const result = await response.json().catch(() => ({}));
 
-        if (!response.ok) {
-          throw new Error(result.error || `Contact request failed (${response.status})`);
-        }
-
-        return result;
-      };
-      let result;
-
-      try {
-        result = await submitContact('/api/contact');
-      } catch (primaryError) {
-        if (!window.location.hostname.endsWith('.vercel.app')) {
-          throw primaryError;
-        }
-
-        result = await submitContact('http://localhost:8080/api/contact');
+      if (!response.ok) {
+        throw new Error(result.error || `Contact request failed (${response.status})`);
       }
 
       setPriorityTicket(result.ticketId || `JB-26-${Math.floor(1000 + Math.random() * 9000)}`);

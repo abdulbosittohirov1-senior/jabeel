@@ -1,4 +1,4 @@
-import { getTelegramContactStatus, sendContactToTelegram } from '../lib/telegramContact.js';
+import { getContactStatusPayload, submitContactRequest } from '../lib/contactApi.js';
 
 async function readJsonBody(req) {
   if (req.body && typeof req.body === 'object') {
@@ -21,13 +21,7 @@ async function readJsonBody(req) {
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {
-    const status = getTelegramContactStatus();
-
-    return res.status(200).json({
-      ok: status.botTokenConfigured && status.managerChatIdConfigured,
-      version: '2026-06-05-force-vercel-contact',
-      ...status,
-    });
+    return res.status(200).json(getContactStatusPayload());
   }
 
   if (req.method !== 'POST') {
@@ -44,7 +38,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Invalid JSON body.' });
   }
 
-  const result = await sendContactToTelegram(body);
+  const result = await submitContactRequest(body);
 
   if (!result.ok) {
     return res.status(result.status).json({ error: result.error });
