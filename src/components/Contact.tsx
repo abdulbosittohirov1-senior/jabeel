@@ -14,6 +14,7 @@ export default function Contact() {
   const [priorityTicket, setPriorityTicket] = useState('');
   const [catalogDownloaded, setCatalogDownloaded] = useState(false);
   const [showLocationMap, setShowLocationMap] = useState(false);
+  const yandexRouteUrl = 'https://yandex.com/maps/?mode=routes&rtext=~41.435083%2C69.341202&rtt=auto';
 
   const handleContactSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -366,12 +367,12 @@ export default function Contact() {
                 </p>
               </div>
               <a 
-                href="https://yandex.com/maps/?ll=69.341202%2C41.435083&z=15&mode=search&text=41.435083%2C69.341202" 
+                href={yandexRouteUrl} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-1.5 bg-orange-50 hover:bg-orange-100 text-orange-600 font-bold text-xs px-4 py-2.5 rounded-xl transition-all"
               >
-                {language === 'en' ? 'Open in Yandex.Maps' : language === 'ru' ? 'Открыть на Яндекс.Картах' : 'Yandex.Maps-da ochish'}
+                {language === 'en' ? 'Get Directions' : language === 'ru' ? 'Построить маршрут' : 'Yo\'nalish olish'}
               </a>
             </div>
             
@@ -411,12 +412,12 @@ export default function Contact() {
                       : 'Mestopolojeniyani korsatish'}
                   </button>
                   <a
-                    href="https://yandex.com/maps/?ll=69.341202%2C41.435083&z=15&mode=search&text=41.435083%2C69.341202"
+                    href={yandexRouteUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center bg-white hover:bg-orange-100 text-orange-600 border border-orange-200 font-bold text-xs px-5 py-3 rounded-xl transition-all"
                   >
-                    {language === 'en' ? 'Open Map' : language === 'ru' ? 'Otkryt kartu' : 'Xaritani ochish'}
+                    {language === 'en' ? 'Get Directions' : language === 'ru' ? 'Postroit marshrut' : 'Yo\'nalish olish'}
                   </a>
                 </div>
               </div>
