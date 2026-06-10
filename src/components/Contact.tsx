@@ -151,7 +151,7 @@ export default function Contact() {
               {/* Instant Social Chat Triggers */}
               <div className="pt-4 border-t border-slate-100 flex flex-col sm:flex-row gap-3">
                 <a
-                  href="https://t.me/jabeel_premium_order_bot"
+                  href="https://t.me/Bosit00007"
                   target="_blank"
                   rel="noreferrer"
                   className="flex-1 bg-[#229ED9]/10 hover:bg-[#229ED9]/20 text-[#229ED9] text-xs font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 group transition-all"
