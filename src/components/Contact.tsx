@@ -14,123 +14,6 @@ export default function Contact() {
   const [priorityTicket, setPriorityTicket] = useState('');
   const [catalogDownloaded, setCatalogDownloaded] = useState(false);
 
-  const getDeliveryZones = () => {
-    switch (language) {
-      case 'en':
-        return [
-          {
-            id: 'zone-1',
-            name: 'Tashkent city (All districts)',
-            minOrder: '5 Kilograms',
-            deliveryTime: 'Within 2 hours',
-            coverage: 'Yunusobod, Chilonzor, Mirzo Ulugbek, Yakkasaroy, Sergeli, Shayxontohur, Olmazor and others.',
-            color: 'border-orange-500 bg-orange-50/50',
-          },
-          {
-            id: 'zone-2',
-            name: 'Tashkent Region',
-            minOrder: '15 Kilograms',
-            deliveryTime: 'Same day (For orders placed before 12:00)',
-            coverage: 'Qibray, Chirchiq, Yangiyul, Parkent, Angren, Toytepa and adjacent areas',
-            color: 'border-slate-300 bg-slate-50/50',
-          },
-          {
-            id: 'zone-3',
-            name: 'Republic of Uzbekistan Wholesales',
-            minOrder: '500 Kilograms (Wholesale batch)',
-            deliveryTime: 'Scheduled custom time (Within 24-48 hours)',
-            coverage: 'Samarkand, Bukhara, Andijan, Namangan, Fergana, Navoiy, Qarshi and all other cities',
-            color: 'border-orange-200 bg-slate-50/50',
-          }
-        ];
-      case 'ru':
-        return [
-          {
-            id: 'zone-1',
-            name: 'Город Ташкент (Все районы)',
-            minOrder: '5 Килограмм',
-            deliveryTime: 'В течение 2-х часов',
-            coverage: 'Юнусабад, Чиланзар, Мирзо Улугбек, Яккасарай, Сергели, Шайхантахур, Алмазар и др.',
-            color: 'border-orange-500 bg-orange-50/50',
-          },
-          {
-            id: 'zone-2',
-            name: 'Ташкентская область',
-            minOrder: '15 Килограмм',
-            deliveryTime: 'День в день (при заказе до 12:00)',
-            coverage: 'Кибрай, Чирчик, Янгиюль, Паркент, Ангрен, Тойтепа и прилегающие районы',
-            color: 'border-slate-300 bg-slate-50/50',
-          },
-          {
-            id: 'zone-3',
-            name: 'Регионы Узбекистана (Оптовые поставки)',
-            minOrder: '500 Килограмм (Оптовая спецпартия)',
-            deliveryTime: 'Согласованный график (в течение 24-48 часов)',
-            coverage: 'Самарканд, Бухара, Андижан, Наманган, Фергана, Навои, Карши и другие крупные города',
-            color: 'border-orange-200 bg-slate-50/50',
-          }
-        ];
-      case 'oz':
-        return [
-          {
-            id: 'zone-1',
-            name: 'Тошкент шаҳри (Барча туманлар)',
-            minOrder: '5 Килограмм',
-            deliveryTime: '2 соат ичида',
-            coverage: 'Юнусобод, Чилонзор, Мирзо Улуғбек, Яккасарой, Сергели, Шайхонтоҳур, Олмазор ва бошқалар.',
-            color: 'border-orange-500 bg-orange-50/50',
-          },
-          {
-            id: 'zone-2',
-            name: 'Тошкент вилояти',
-            minOrder: '15 Килограмм',
-            deliveryTime: 'Ўша куннинг ўзида (12:00 гача буюртма қилинса)',
-            coverage: 'Қибрай, Чирчиқ, Янгийўл, Паркент, Ангрен, Тўйтепа ва яқин туманлар',
-            color: 'border-slate-300 bg-slate-50/50',
-          },
-          {
-            id: 'zone-3',
-            name: 'Республика бўйлаб улгуржи етказиб бериш',
-            minOrder: '500 Килограмм (Улгуржи)',
-            deliveryTime: 'Келишилган вақтда (24-48 соат ичида)',
-            coverage: 'Самарқанд, Бухоро, Андижон, Наманган, Фарғона, Навоий, Қарши ва бошқа шаҳарлар',
-            color: 'border-orange-200 bg-slate-50/50',
-          }
-        ];
-      default:
-        return [
-          {
-            id: 'zone-1',
-            name: 'Toshkent shahri (Barcha tumanlar)',
-            minOrder: '5 Kilogramm',
-            deliveryTime: '2 soat ichida',
-            coverage: 'Yunusobod, Chilonzor, Mirzo Ulug\'bek, Yakkasaroy, Sergeli, Shayxontohur, Olmazor va boshqalar.',
-            color: 'border-orange-500 bg-orange-50/50',
-          },
-          {
-            id: 'zone-2',
-            name: 'Toshkent viloyati',
-            minOrder: '15 Kilogramm',
-            deliveryTime: 'O\'sha kunning o\'zida (12:00 gacha buyurtma qilinsa)',
-            coverage: 'Qibray, Chirchiq, Yangiyo\'l, Parkent, Angren, To\'ytepa va yaqin tumanlar',
-            color: 'border-slate-300 bg-slate-50/50',
-          },
-          {
-            id: 'zone-3',
-            name: 'Respublika bo\'ylab ulgurji yetkazib berish',
-            minOrder: '500 Kilogramm (Ulgurji)',
-            deliveryTime: 'Kelisilgan vaqtda (24-48 soat ichida)',
-            coverage: 'Samarqand, Buxoro, Andijon, Namangan, Farg\'ona, Navoiy, Qarshi va boshqa shaharlar',
-            color: 'border-orange-200 bg-slate-50/50',
-          }
-        ];
-    }
-  };
-
-  const zones = getDeliveryZones();
-  const [selectedZoneId, setSelectedZoneId] = useState('zone-1');
-  const activeZone = zones.find((z) => z.id === selectedZoneId) || zones[0];
-
   const handleContactSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !phone.trim() || !message.trim()) return;
@@ -198,7 +81,7 @@ export default function Contact() {
 
         {/* Core Layout Split */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-16">
-          {/* Left Block: Communication Details & Interactive Delivery Zones Matrix */}
+          {/* Left Block: Communication Details */}
           <div className="lg:col-span-5 space-y-8">
             <div className="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm space-y-6 text-left">
               <h3 className="text-lg font-bold text-slate-900 border-b border-slate-50 pb-4">
@@ -267,7 +150,7 @@ export default function Contact() {
               {/* Instant Social Chat Triggers */}
               <div className="pt-4 border-t border-slate-100 flex flex-col sm:flex-row gap-3">
                 <a
-                  href="https://t.me/jabeel_premium_bot_link_placeholder"
+                  href="https://t.me/jabeel_premium_order_bot"
                   target="_blank"
                   rel="noreferrer"
                   className="flex-1 bg-[#229ED9]/10 hover:bg-[#229ED9]/20 text-[#229ED9] text-xs font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 group transition-all"
@@ -277,7 +160,7 @@ export default function Contact() {
                   <span>{language === 'en' ? 'Message Telegram' : language === 'ru' ? 'Написать в Telegram' : 'Telegram orqali yozish'}</span>
                 </a>
                 <a
-                  href="https://wa.me/998977040101?text=Assalomu%20alaykum%20Jabeel%20Premium"
+                  href="https://api.whatsapp.com/send?phone=998977040101&text=Assalomu%20alaykum%20Jabeel%20Premium"
                   target="_blank"
                   rel="noreferrer"
                   className="flex-1 bg-[#25D366]/10 hover:bg-[#25D366]/20 text-emerald-600 text-xs font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 group transition-all"
@@ -289,61 +172,6 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Simulated Interactive Uzbekistan Delivery Class Matrix */}
-            <div className="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm space-y-6 text-left">
-              <div>
-                <h3 className="text-lg font-bold text-slate-900">
-                  {language === 'en' ? 'Regional Logistics Coverage' : language === 'ru' ? 'Доставка по Регионам' : 'Mintaqalar bo\'ylab yetkazib berish'}
-                </h3>
-                <p className="text-xs text-slate-500 mt-1">
-                  {language === 'en' ? 'Select region to view logisitics terms:' : language === 'ru' ? 'Выберите регион для расчета логистики' : 'Logistika shartlarini bilish uchun kerakli hududni tanlang:'}
-                </p>
-              </div>
-
-              {/* Selector buttons */}
-              <div className="grid grid-cols-3 gap-2.5">
-                {zones.map((zone) => (
-                  <button
-                    key={zone.id}
-                    onClick={() => setSelectedZoneId(zone.id)}
-                    className={`text-center py-2 px-1.5 rounded-xl border text-[10px] font-extrabold uppercase tracking-wide transition-all cursor-pointer truncate ${
-                      selectedZoneId === zone.id
-                        ? 'border-orange-500 bg-orange-50 text-orange-700 font-extrabold shadow-xs'
-                        : 'border-slate-100 bg-slate-50 text-slate-500 hover:border-slate-200'
-                    }`}
-                  >
-                    {zone.name.split(' ')[0]}
-                  </button>
-                ))}
-              </div>
-
-              {/* Selected Zone readout */}
-              <div className={`p-5 rounded-2xl border transition-all ${activeZone.color}`}>
-                <h4 className="font-bold text-slate-900 text-sm">{activeZone.name}</h4>
-                
-                <div className="grid grid-cols-2 gap-4 mt-4">
-                  <div>
-                    <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest block">
-                      {language === 'en' ? 'Min. Order' : language === 'ru' ? 'Мин. заказ' : 'Min. Buyurtma'}
-                    </span>
-                    <span className="text-xs font-bold text-slate-800">{activeZone.minOrder}</span>
-                  </div>
-                  <div>
-                    <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest block">
-                      {language === 'en' ? 'Delivery Time' : language === 'ru' ? 'Срок доставки' : 'Yetkazib berish'}
-                    </span>
-                    <span className="text-xs font-bold text-slate-800">{activeZone.deliveryTime}</span>
-                  </div>
-                </div>
-
-                <div className="mt-4 pt-4 border-t border-slate-200">
-                  <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest block">
-                    {language === 'en' ? 'Territorial Coverage' : language === 'ru' ? 'Зона Покрытия' : 'Qoplash doirasi'}
-                  </span>
-                  <span className="text-xs font-medium text-slate-600 block mt-1">{activeZone.coverage}</span>
-                </div>
-              </div>
-            </div>
           </div>
 
           {/* Right Block: Fully Interactive Web Contact Form / Submit Success */}
@@ -517,7 +345,7 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Yandex Maps Section */}
+        {/* Lightweight Location Section */}
         <div id="yandex-map-container" className="mt-16 animate-fade-in text-left">
           <div className="bg-white p-4 sm:p-6 rounded-[2rem] border border-slate-100 shadow-lg space-y-4">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
@@ -546,18 +374,30 @@ export default function Contact() {
               </a>
             </div>
             
-            <div className="relative w-full h-[350px] sm:h-[450px] rounded-2xl overflow-hidden shadow-inner border border-slate-100 bg-slate-50">
-              <iframe 
-                title="Jabeel Premium Manzili (Yandex Map)"
-                src="https://yandex.com/map-widget/v1/?ll=69.341202%2C41.435083&z=15&pt=69.341202%2C41.435083%2Cpm2orl"
-                width="100%" 
-                height="100%" 
-                frameBorder="0" 
-                allowFullScreen={true}
-                loading="lazy"
-                referrerPolicy="no-referrer"
-                className="absolute inset-0 w-full h-full filter saturate-[0.95]"
-              />
+            <div className="rounded-2xl border border-orange-100 bg-orange-50/50 p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="flex items-start gap-3">
+                <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center shrink-0 shadow-sm">
+                  <MapPin className="w-5 h-5 text-orange-500" />
+                </div>
+                <div>
+                  <p className="text-sm font-bold text-slate-900">Toshkent vil., Qibray t., Cho'ponota 23</p>
+                  <p className="text-xs text-slate-500 mt-1">
+                    {language === 'en'
+                      ? 'The map opens in a separate tab so the page stays fast on all devices.'
+                      : language === 'ru'
+                      ? 'Karta otkroetsya v novoy vkladke, sayt ne budet zavisat.'
+                      : 'Xarita alohida oynada ochiladi, shuning uchun sayt qotmaydi.'}
+                  </p>
+                </div>
+              </div>
+              <a
+                href="https://yandex.com/maps/?ll=69.341202%2C41.435083&z=15&mode=search&text=41.435083%2C69.341202"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs px-5 py-3 rounded-xl transition-all"
+              >
+                {language === 'en' ? 'Open Map' : language === 'ru' ? 'Otkryt kartu' : 'Xaritani ochish'}
+              </a>
             </div>
           </div>
         </div>
